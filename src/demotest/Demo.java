@@ -12,7 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**do fast**/
+/**
+ * do fast*
+ */
 /**
  *
  * @author Nihal gupta
@@ -178,60 +180,51 @@ public class Demo extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
-    String username;
-    username = this.username.getText();
-    String password;
-    password = this.password.getText();
-    String confirmPassword;
-    confirmPassword=this.confirmPass.getText();
-    String gender;
+        String username;
+        username = this.username.getText();
+        String password;
+        password = this.password.getText();
+        String confirmPassword;
+        confirmPassword = this.confirmPass.getText();
+        String gender;
 //    
 //    // Navigation
-    if(male.isSelected())
-    { 
-        gender = "male";
-    }
-    else if(female.isSelected()){
-        gender = "female";
-    }
-    else if(others.isSelected()){
-        gender = "others";
-    }
-        if(username!=null && password!=null){
+        if (male.isSelected()) {
+            gender = "male";
+        } else if (female.isSelected()) {
+            gender = "female";
+        } else if (others.isSelected()) {
+            gender = "others";
+        }
+        if (username != null && password != null) {
 
-            if(password.equals(confirmPassword)){
-            try{
-              conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/trial?user=root&password=nihal123");
-              ps = conn.prepareStatement("insert into users(username,password,gender) values(?,?,gender)");
-              ps.setString(1, username);
-              ps.setString(2, password);
-              ps.executeUpdate();
+            if (password.equals(confirmPassword)) {
+                try {
+                    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/trial?user=root&password=nihal123");
+                    ps = conn.prepareStatement("insert into users(username,password,gender) values(?,?,gender)");
+                    ps.setString(1, username);
+                    ps.setString(2, password);
+                    ps.executeUpdate();
 
-            // Navigation
-             Login l = new Login();
-             l.setVisible(true);
-             l.setLocationRelativeTo(null);
-             this.dispose();
-            // a
-            // a
-            // a
-            // a
+                    // Navigation
+                    Login l = new Login();
+                    l.setVisible(true);
+                    l.setLocationRelativeTo(null);
+                    this.dispose();
 
+                } catch (SQLException ex) {
+                    System.err.println(ex);
 
-            }catch(SQLException ex){
-              System.err.println(ex); 
-     
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Passwords are not same!!!");
             }
-
-}
-            else {
-                       JOptionPane.showMessageDialog(this, "Passwords are not same!!!");
-                    }
         }
 //            else {
 //                       JOptionPane.showMessageDialog(this, "Null fields found!!!");
 //                    }
-            
+
     }//GEN-LAST:event_submitActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
